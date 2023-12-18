@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createUser,
+  getManyStudents,
   getUserByEmail,
   updateRefreshJWT,
 } from "../models/user/UserModel.js";
@@ -10,7 +11,11 @@ import {
   newUserValidation,
 } from "../middlewares/joiValidation.js";
 import { signAccessJWT, signJWTs } from "../utils/jwtHelper.js";
-import { refreshAuth, userAuth } from "../middlewares/authMiddleware.js";
+import {
+  adminAuth,
+  refreshAuth,
+  userAuth,
+} from "../middlewares/authMiddleware.js";
 import { deleteSession } from "../models/session/SessionModel.js";
 const router = express.Router();
 
@@ -111,6 +116,18 @@ router.get("/", userAuth, (req, res, next) => {
       status: "success",
       message: "Here is the user info",
       user: req.userInfo,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+router.get("/all-users", adminAuth, async (req, res, next) => {
+  try {
+    const users = await getManyStudents();
+    res.json({
+      status: "success",
+      message: "Here is the user info",
+      users,
     });
   } catch (error) {
     next(error);

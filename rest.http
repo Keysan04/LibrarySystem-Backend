@@ -36,6 +36,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZUBhLmNvbSIs
 ### create new students account
 POST  {{rootAPI}}
 
+### get all users
+GET   {{rootAPI}}/all-users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYS5jb20iLCJpYXQiOjE3MDI4NTQ3NjgsImV4cCI6MTcwMjg1NTY2OH0.RFzmyP0RuBydErhZgVzxMW5EUiPLzQHzY78GEYRWdnE
+
 
 # ============== book api 
 
