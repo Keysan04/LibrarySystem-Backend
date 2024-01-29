@@ -7,10 +7,10 @@ POST {{rootAPI}}/admin-user
 Content-Type: application/json
 
 {
-  "fName": "Prem",  
-  "lName": "Ach",  
+  "fName": "Kishan",  
+  "lName": "Thapa",  
   "phone": "04567890",  
-  "email": "ase@a.com",  
+  "email": "keysan@gmail.com",  
   "password": "12345"
 }
 ### Login user
@@ -18,7 +18,7 @@ POST {{rootAPI}}/login
 Content-Type: application/json
 
 {
-  "email": "a@a.com",  
+  "email": "keysanthapa@gmail.com",  
   "password": "12345"
 }
 
@@ -29,19 +29,15 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYS5jb20iLCJp
 
 # ======= student user 
 ### get students profile
-GET  {{rootAPI}}
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFzZUBhLmNvbSIsImlhdCI6MTcwMTY1OTEyMSwiZXhwIjoxNzAxNjYwMDIxfQ.AqpXaGTRGnfJ_qffSWjN6sXy3L0A8Ky38Tzd4kUYV7M
 
-
+GET  {{rootAPI}}/totalUser
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtleXNhbnRoYXBhQGdtYWlsLmNvbSIsImlhdCI6MTcwMjQxNjQ3MiwiZXhwIjoxNzAyNDE3MzcyfQ.r3u8-bXHTvmKsfmUq43vdwG2xl0JDBt7NcfFBhRqTdM
 ### create new students account
 POST  {{rootAPI}}
 
-### get all users
-GET   {{rootAPI}}/all-users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYS5jb20iLCJpYXQiOjE3MDI4NTQ3NjgsImV4cCI6MTcwMjg1NTY2OH0.RFzmyP0RuBydErhZgVzxMW5EUiPLzQHzY78GEYRWdnE
-
 
 # ============== book api 
+
 
 
 ###Get all the books 
@@ -54,8 +50,7 @@ GET {{bookAPI}}/656eae348fcc3b37a66d4327
 ### post new book
 POST {{bookAPI}}
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFAYS5jb20iLCJpYXQiOjE3MDE3NTIwNjAsImV4cCI6MTcwMTc1Mjk2MH0.fZN2qciH-PpTMAlKixozArxr9E6JffzNDcFFWkpXYmQ
-
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtleXNhbnRoYXBhQGdtYWlsLmNvbSIsImlhdCI6MTcwMjMyODk2NywiZXhwIjoxNzAyMzI5ODY3fQ.6cY9aV6o-fFurIb1b9UUOTWMnkv08j_mlcsq0XartiE
 {
    "thumbnail": "https://m.media-amazon.com/images/I/51-5ZXYtcML.jpg",
     "name": "Eloquent Javascript",

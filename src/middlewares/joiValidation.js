@@ -99,7 +99,6 @@ export const updateBookValidation = (req, res, next) => {
   validationProcessor({ schemaObj, req, res, next });
 };
 
-// ======= burrow validation
 export const newBurrowValidation = (req, res, next) => {
   const schemaObj = {
     bookId: SORTSTRREQUIRED,
@@ -107,6 +106,7 @@ export const newBurrowValidation = (req, res, next) => {
     thumbnail: LONGSTRREQUIRED,
     userId: SORTSTRREQUIRED,
     userName: SORTSTRREQUIRED,
+    reviewGiven: SORTSTRREQUIRED,
   };
 
   validationProcessor({ schemaObj, req, res, next });

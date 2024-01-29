@@ -32,15 +32,6 @@ const bookSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-
-    isAvailable: {
-      type: Boolean,
-      default: true,
-    },
-    dueDate: {
-      type: Date,
-      default: null,
-    },
   },
   {
     timestamps: true,

@@ -6,39 +6,38 @@ import {
   signAccessJWT,
 } from "../utils/jwtHelper.js";
 
-export const getUserFromAcessJWT = async (acessJWT) => {
+export const getUserFromAccessJWT = async (accessJWT) => {
   // validate if accessJWT is valid
 
-  const decoded = accessJWTDecode(acessJWT);
+  const decoded = accessJWTDecode(accessJWT);
 
   if (decoded?.email) {
     // check if exist in session table
-    const tokenExist = await getSession({ token: acessJWT });
+    const tokenExist = await getSession({ token: accessJWT });
     if (tokenExist?._id) {
       //extract the email, get user by email
       const user = await getUserByEmail(decoded.email);
       if (user?._id) {
         // everyting is true above then set userinfo in req obj and sent to the next middleware
         user.password = undefined;
+
         return user;
       }
     }
   }
-
   return false;
 };
 
 export const userAuth = async (req, res, next) => {
   try {
     const { authorization } = req.headers;
-    const user = await getUserFromAcessJWT(authorization);
-
+    // validate if accessJWT is valid
+    const user = await getUserFromAccessJWT(authorization);
     if (user?._id) {
-      user.password = undefined;
+      req.password = undefined;
       req.userInfo = user;
       return next();
     }
-
     throw new Error("Invalid token, unauthorized");
   } catch (error) {
     error.errorCode = 401;
@@ -48,21 +47,14 @@ export const userAuth = async (req, res, next) => {
     next(error);
   }
 };
-
 export const adminAuth = async (req, res, next) => {
   try {
     const { authorization } = req.headers;
     // validate if accessJWT is valid
-    const user = await getUserFromAcessJWT(authorization);
-
-    if (user?.role === "admin") {
-      // everyting is true above then set userinfo in req obj and sent to the next middleware
-      user.password = undefined;
-      req.userInfo = user;
-
+    const user = await getUserFromAccessJWT(authorization);
+    if (user?._id) {
       return next();
     }
-
     throw new Error("Invalid token or unauthorized");
   } catch (error) {
     error.errorCode = 401;

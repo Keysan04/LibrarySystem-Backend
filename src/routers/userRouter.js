@@ -1,7 +1,7 @@
 import express from "express";
 import {
   createUser,
-  getManyStudents,
+  getTotalUser,
   getUserByEmail,
   updateRefreshJWT,
 } from "../models/user/UserModel.js";
@@ -11,11 +11,7 @@ import {
   newUserValidation,
 } from "../middlewares/joiValidation.js";
 import { signAccessJWT, signJWTs } from "../utils/jwtHelper.js";
-import {
-  adminAuth,
-  refreshAuth,
-  userAuth,
-} from "../middlewares/authMiddleware.js";
+import { refreshAuth, userAuth } from "../middlewares/authMiddleware.js";
 import { deleteSession } from "../models/session/SessionModel.js";
 const router = express.Router();
 
@@ -121,13 +117,13 @@ router.get("/", userAuth, (req, res, next) => {
     next(error);
   }
 });
-router.get("/all-users", adminAuth, async (req, res, next) => {
+router.get("/totalUser", userAuth, async (req, res, next) => {
   try {
-    const users = await getManyStudents();
+    const data = await getTotalUser();
     res.json({
       status: "success",
       message: "Here is the user info",
-      users,
+      data,
     });
   } catch (error) {
     next(error);

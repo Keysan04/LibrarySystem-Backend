@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const burrowSchema = new mongoose.Schema(
+const borrowSchema = new mongoose.Schema(
   {
     bookId: {
       type: mongoose.Types.ObjectId,
@@ -15,7 +15,7 @@ const burrowSchema = new mongoose.Schema(
       required: true,
     },
     userId: {
-      type: mongoose.Types.ObjectId,
+      type: String,
       required: true,
     },
     userName: {
@@ -28,7 +28,8 @@ const burrowSchema = new mongoose.Schema(
     },
     dueDate: {
       type: Date,
-      required: true,
+      //default: Date.now() + 15 * 24 * 60 * 60 * 1000,
+      default: null,
     },
     isReturned: {
       type: Boolean,
@@ -44,4 +45,4 @@ const burrowSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model("Burrow", burrowSchema); // users
+export default mongoose.model("Borrow", borrowSchema); // users

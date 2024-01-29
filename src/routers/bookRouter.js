@@ -9,7 +9,7 @@ import {
 } from "../models/book/BookModel.js";
 import {
   adminAuth,
-  getUserFromAcessJWT,
+  getUserFromAccessJWT,
   userAuth,
 } from "../middlewares/authMiddleware.js";
 import {
@@ -21,17 +21,13 @@ const router = express.Router();
 router.get("/:_id?", async (req, res, next) => {
   try {
     const { authorization } = req.headers;
-
     let filter = { status: "active" };
     if (authorization) {
-      const user = await getUserFromAcessJWT(authorization);
-
+      const user = await getUserFromAccessJWT(authorization);
       if (user?.role === "admin") {
         filter = {};
       }
     }
-
-    //who is making, if admin, send all otherwise send only active books
     const { _id } = req.params;
     const books = _id
       ? await getABook({ ...filter, _id })
@@ -43,7 +39,6 @@ router.get("/:_id?", async (req, res, next) => {
       books,
     });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 });
